@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>タイトル</title>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+    main > div{
+        margin: 10px;
+    }
+    button{
+        margin-right: 10px;
+    }    
+</style>
+</head>
+<body>
+<main>
+<p>SweetAlert.jsのテスト</p>
+<div><button id="btn">ボタン</button><span></span></div>
+<div><button id="btn1">ボタン1</button><span>まずはHello World</span></div>
+<div><button id="btn2">ボタン2</button><span>タイトル設定</span></div>
+<div><button id="btn3-1">ボタン3-1</button><button id="btn3-2">ボタン3-2</button><button id="btn3-3">ボタン3-3</button><button id="btn3-4">ボタン3-4</button><span>アイコン表示！</span></div>
+<div><button id="btn4">ボタン4</button><span>プロパティで指定</span></div>
+<div><button id="btn5">ボタン5</button><span>ボタン名を変更</span></div>
+<div><button id="btn6">ボタン6</button><span>Promiseが使えます</span></div>
+<div><button id="btn7">ボタン7</button><span>OK / Cancel</span></div>
+<div><button id="btn8">ボタン8</button><span>複数ボタン</span></div>
+<div><button id="btn9">ボタン9</button><span>入力フィールド</span></div>
+</main>
+<script>
+$(function(){
+    $("#btn").click(function(){
+        
+    });
+    
+    $("#btn1").click(function(){
+        swal("Hello world");
+    });
+
+    $("#btn2").click(function(){
+        swal("タイトル！", "ここに内容を表示します");
+    });
+
+    $("#btn3-1").click(function(){
+        swal("タイトル！", "成功アイコン", "success");
+    });
+    $("#btn3-2").click(function(){
+        swal("タイトル！", "警告アイコン", "warning");
+    });
+    $("#btn3-3").click(function(){
+        swal("タイトル！", "エラーアイコン", "error");
+    });
+    $("#btn3-4").click(function(){
+        swal("タイトル！", "インフォメーションアイコン", "info");
+    });
+    $("#btn4").click(function(){
+        swal({
+            title: "タイトル!",
+            text: "プロパティで指定してます",
+            icon: "success",
+        });       
+    });
+
+    $("#btn5").click(function(){
+        swal({
+            title: "タイトル!",
+            text: "ボタン名を変えてます",
+            icon: "success",
+            button:"Please Click!!"
+        });   
+    });
+    $("#btn6").click(function(){
+        swal("ボタンかモーダル外をクリックしてね")
+            .then((value) => {
+                swal(`The returned value is: ${value}`);
+            });
+    });
+
+    $("#btn7").click(function () {
+        swal({
+            title: "タイトル",
+            text: "確認メッセージ",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("成功！", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("キャンセル!");
+                }
+            });
+    });
+    $("#btn8").click(function () {
+        swal("複数ボタンパターン", {
+            buttons: {
+                cancel: "キャンセル!",
+                catch: {
+                    text: "test!!!",
+                    value: "catch",
+                },
+                defeat: true,
+            },
+        })
+            .then((value) => {
+                switch (value) {
+
+                    case "defeat":
+                        swal("AAA!");
+                        break;
+
+                    case "catch":
+                        swal("BBB", "bbb", "success");
+                        break;
+
+                    default:
+                        swal("CCC");
+                }
+            });
+    });
+
+    $("#btn9").click(function(){
+        swal("テキストを入力してください", {
+            content: "input",
+        })
+            .then((value) => {
+                swal(`入力した文字: ${value}`);
+            });
+    });
+    
+
+
+
+});
+</script>
+</body>
+</html>
